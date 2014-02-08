@@ -1,0 +1,110 @@
+Chatinator
+------------------------------------------------------------------------------------------
+
+
+TODO:
+______________________________________
+Build out first chat room
+  - review sockets.io example
+  - review jade functionality
+  - create/delete room (adopt existing 'rooms')
+  - add/subtract participants (adopt existing 'users')
+  - add chat functionality
+
+Construct core feature
+  - add tracking and validation for when a user is allowed to comment
+  - notify user when he is allowed to comment and/or when any comment is made (use existing notify.js)
+
+Build out notification and room settings
+  Q: Moderator required?
+  Q: Time-flexible rooms?
+  Q: Default time to acknowledge?
+  Q: Default time to compose (the time between acknowledging and commenting)?
+
+Advanced user interactions
+  - Plan interject feature
+  - Plan out-of-stream emoticons (nod of approval, scowl, twiddle thumbs, interest peeked, mind blown, lost)
+  - Plan moderator interactions
+
+Considerations
+  - Rooms filled manually (by user interest), automatically (by user background), or randomly?
+
+
+
+
+Booting Up
+______________________________________
+
+1. Start mongo daemon via command line:  'mongod'
+
+2. Start node server via command line: 'C:\Users\Troy\web\chatinator>node server.js'
+
+3. Goto http://localhost:3000/
+
+
+
+
+Misc
+______________________________________
+
+Login email: troy.dm@gmail.com
+login pw: password
+
+
+
+
+Tools
+______________________________________
+
+Node - Javascript-based server.  Loads modules like express, fs, and passport.  Connects to the databases, opens ports, and includes configuration settings and routes.
+
+Express - Server-side framework for node (the server, duh).
+        - Includes ready-made methods for the application (app.X), requests (req.Y), and responses (res.Z).  
+        - Can also handle cookies, sessions, compression, and basic auth.
+
+Mongoose - Defines a mongo object model.  Useful for defining models sensibly and ensuring correct field types.
+
+Passport - Authorization Helper (oauth/third party)
+
+Socket.io - Socket communication server
+
+
+
+Structure
+______________________________________
+
+--- SERVER ---
+server.js - Node server application.  Often named 'app.js' in tutorials, but here differentiated from the client-side 'public/js/app.js'
+
+app - Primary application folder (excluding configs, plugins, and includes)
+
+app > controllers - Server-side javascript
+                  - Connects to the main server/express via 'exports' variable in server.js  (parameters: req, res, next, id...more?)
+                  - Connects to http requests via routes.js
+                  - Defines the template to display with 'res.render'
+                  - 
+
+app > models - Server-side javascript.  
+             - Defines the mongoose schemas
+             - Validates input models
+             - Place for additional methods (addComment, uploadImage, etc.)
+
+app > views > includes - For every-page generics like footers and headers
+app > views > layouts - For differentiating mobile vs default layouts, stylesheets, and meta information (like viewport)
+app > views > x - Folder and file name structure relate to paths given in the controller via 'res.render'
+
+config > config.js - 3rd party access keys
+                   - Dev, test, and production keys
+
+config > express.js - Defines error handling
+                    - Defines route and engine for views
+                    - Defines compression for css and javascript
+                    - Defines session storage location (mongo!) and authorization method (passport, in this case)
+
+config > passport.js - Defines authorization methods (currently password, twitter, facebook, google, github, linkedin)
+
+config > sockets.js - Defines, creates, and opens socket server (for streaming Chats to participants)
+                    - Ties in with client-side js via 'io.connect', 'socket.on' etc
+
+--- CLIENT ---
+public > js > app.js - Primary client-side javascript file (included in all files via foot.jade)

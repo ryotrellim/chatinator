@@ -1,0 +1,43 @@
+extends ../layouts/default
+
+
+block main
+  h1= title
+  hr
+
+block content
+  - var action = '/rooms'
+  - action += room.isNew? '' : '/' + room.id
+
+  .row
+    .span7
+      form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
+
+        input(type="hidden", name="_csrf", value="#{csrf_token}")
+
+        - if (!room.isNew)
+          input(type="hidden", name="_method", value="PUT")
+
+        .control-group
+          label.control-label(for='title') Topic\(title)
+          .controls
+            input#title.input-xlarge(type='text', name="title", value=room.title, placeholder='Enter the title')
+
+        .control-group
+          label.control-label(for='desc') Opening Question\(description/body)
+          .controls
+            textarea#desc.input-xlarge(type='text', rows="15", name="body", placeholder='Enter the room description')=room.body
+
+        .control-group
+          label.control-label(for='tags') Tags
+          .controls
+          input#tags(type='text', name="tags", value=room.tags, placeholder='Enter the tags')
+
+        .form-actions
+          button.btn.btn-primary(type='submit') Save changes
+          &nbsp;
+          a.btn(href='/rooms', title="cancel") Cancel
+
+    .span5
+      - if (!room.isNew && room.image && room.image.files && room.image.files.length)
+        img(src=room.image.cdnUri + "/mini_" + room.image.files[0])

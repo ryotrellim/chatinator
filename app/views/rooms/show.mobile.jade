@@ -1,0 +1,41 @@
+extends ../layouts/mobile
+
+
+block main
+  h1= room.title
+
+block content
+  .row
+    .span9
+      p=room.body
+      .meta.muted
+        - var name = room.user.name ? room.user.name : room.user.username
+        p Author -&nbsp;
+          a(href="/users/"+room.user._id)= name
+        p.muted= formatDate(room.createdAt, "%b %d, %Y at %I:%M %p")
+        - if (room.tags)
+          .tags
+            - each tag in room.tags.split(',')
+              a.tag(href="/tags/"+tag)
+                i.icon-tags
+                |  #{tag}
+              &nbsp;&nbsp;
+    .span3
+      - if (!room.isNew && room.image && room.image.files && room.image.files.length)
+        img(src=room.image.cdnUri + '/mini_' + room.image.files[0])
+
+  p
+    br
+    form.center.form-inline.confirm(action="/rooms/"+room.id, method="post")
+      input(type='hidden', name='_csrf', value="#{csrf_token}")
+      a.btn(href='/rooms/'+room._id+'/edit', title="edit") Edit
+      &nbsp;&nbsp;
+      input(type="hidden", name="_method", value="DELETE")
+      button.btn.btn-danger(type="submit") delete
+
+  p
+    br
+    h3 Comments
+    - each comment in room.comments
+      include ../comments/comment
+    include ../comments/form
