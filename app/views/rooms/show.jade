@@ -1,18 +1,27 @@
 extends ../layouts/default
 
+
 block main
   h1= room.title
 
 block content
+  - var isParticipant = false
+  - var isCreator = false
+  - if (room.user.username == user.username) isCreator = true
+  - each participant in room.participants
+    - if (participant.username == user.username) isParticipant = true
+  
+
+
   .row
     .span9
       p=room.body
       .meta.muted
         - if (room.user)
-          - var name = room.user.name ? room.user.name : room.user.username
+          - var name = room.user.username
           p Author -&nbsp;
             a(href="/users/"+room.user._id)= name
-        p.muted= formatDate(room.createdAt, "%b %d, %Y at %I:%M %p")
+            p.muted= formatDate(room.createdAt, "%b %d, %Y at %I:%M %p")
         - if (room.tags)
           .tags
             - each tag in room.tags.split(',')
@@ -24,31 +33,25 @@ block content
       - if (!room.isNew && room.image && room.image.files && room.image.files.length)
         img(src=room.image.cdnUri + '/mini_' + room.image.files[0])
 
-
-  p
-    br
-    form.center.form-inline.confirm(action="/rooms/"+room.id, method="post")
-      input(type='hidden', name='_csrf', value="#{csrf_token}")
-      a.btn(href='/rooms/'+room._id+'/edit', title="edit") Edit
-      &nbsp;&nbsp;
-      input(type="hidden", name="_method", value="DELETE")
-      button.btn.btn-danger(type="submit") delete
-
-  h1 Chat
-    label(for="userName") User name: (Hit Enter) 
-    input#userName(type="text", size="30")
+  h1
+    - if (!isCreator)
+      button#joinRoom(disabled=isParticipant) Join Room
+      button#leaveRoom(disabled=!isParticipant) Leave Room
+    - else
+      form.confirm(action="/rooms/"+room.id, method="post")
+        a.btn(href='/rooms/'+room._id+'/edit', title="edit") Edit
+        input(type="hidden", name="_method", value="DELETE")
+        button.btn.btn-danger(type="submit") delete
   span#feedback
    
-  p
-  div#msgWindow.shadow
- 
-  p
-  div
-    br
-    table
-      tr
-        td
-          select#users(style="width: 100px")
-        td
-          input#msg(type="text", style="width: 600px", disabled="true")
-
+  .container-fluid
+    .row-fluid
+      div.span2 Participants:
+        ul#participantList
+          - each participant in room.participants
+            li= participant.username
+      form.span10
+        div.well.well-small#msgWindow
+        textarea.input-block-level.btn-success#msg(type="text", rows="5", placeholder="It's your turn!  Enter something insightful here.")
+        button.btn.btn-danger#msgSubmit(type="submit") Submit
+  

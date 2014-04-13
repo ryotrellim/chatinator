@@ -31,6 +31,12 @@ Considerations
 
 
 
+0. Visit room
+1. Click to join room (POST to /rooms/id/join.  Triggered by...?)
+2. 200 OK.  Then fetch room data. (GET /rooms/id)
+3. 200 OK.  Display room history and participants. (jquery)
+
+
 
 Booting Up
 ______________________________________
@@ -73,7 +79,9 @@ Socket.io - Socket communication server
 Structure
 ______________________________________
 
---- SERVER ---
+
+--- SERVER ---------------------------------------------------------------------------------------------------------
+
 server.js - Node server application.  Often named 'app.js' in tutorials, but here differentiated from the client-side 'public/js/app.js'
 
 app - Primary application folder (excluding configs, plugins, and includes)
@@ -106,5 +114,7 @@ config > passport.js - Defines authorization methods (currently password, twitte
 config > sockets.js - Defines, creates, and opens socket server (for streaming Chats to participants)
                     - Ties in with client-side js via 'io.connect', 'socket.on' etc
 
---- CLIENT ---
-public > js > app.js - Primary client-side javascript file (included in all files via foot.jade)
+
+--- CLIENT ------------------------------------------------------------------------------------------------------------
+
+public > js > app.js (now chat.js) - Primary client-side javascript file (included in all files via foot.jade)

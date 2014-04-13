@@ -1,36 +1,40 @@
 var socket;
 var myUserName;
  
-socket = io.connect("http://localhost:3000");
+socket = io.connect();
 
-function enableMsgInput(enable) {
-  $('input#msg').prop('disabled', !enable);
+function enableJoinRoom(enable) {
+  $('button#joinRoom').prop('disabled', !enable);
 }
  
-function enableUsernameField(enable) {
-  $('input#userName').prop('disabled', !enable);
+function enableLeaveRoom(enable) {
+  $('button#leaveRoom').prop('disabled', !enable);
 }
  
 function appendNewMessage(msg) {
-  var html;
-  if (msg.target == "All") {
-    html = "<span class='allMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
-  } else {
-    // It is a private message to me
-    html = "<span class='privMsg'>" + msg.source + " (P) : " + msg.message + "</span><br/>"
-  }
+  var html = "<span class='allMsg'>" + msg.userName + " : " + msg.message.body + "</span><br/>";
+  // if (msg.target == "All") {
+  //   html = "<span class='allMsg'>" + msg.source + " : " + msg.message + "</span><br/>"
+  // } else {
+  //   // It is a private message to me
+  //   html = "<span class='privMsg'>" + msg.source + " (P) : " + msg.message + "</span><br/>"
+  // }
   $('#msgWindow').append(html);
 }
  
-function appendNewUser(uName, notify) {
-  console.log('appendNewUser');
-  $('select#users').append($('<option></option>').val(uName).html(uName));
-  if (notify && (myUserName !== uName) && (myUserName !== 'All'))
-    $('span#msgWindow').append("<span class='adminMsg'>==>" + uName + " just joined <==<br/>")
+function handleUserJoined(userName, notify) {
+  // console.log('handleUserJoined');
+  $('ul#participantList').append($('<li></li>').val(userName).html(userName));
+  
+  if(myUserName = userName) {
+    $('span#msgWindow').append("<span class='adminMsg'>Welcome to Chatinator!<br/>");
+  }
+  if (notify && (myUserName !== userName) && (myUserName !== 'All'))
+    $('span#msgWindow').append("<span class='adminMsg'>==>" + userName + " just joined <==<br/>")
 }
  
 function handleUserLeft(msg) {
-    $("select#users option[value='" + msg.userName + "']").remove();
+    $("ul#participantList li:contains('"+msg.userName+"')").remove();
 }
 
 function setFeedback(fb) {
@@ -38,41 +42,106 @@ function setFeedback(fb) {
 }
 
 /** Remove: will be authorized on message sent **/
-function setUsername() {
-    myUserName = $('input#userName').val();
-    console.log('setUserName()');
-    socket.emit('set username', $('input#userName').val(), function(data) { console.log('emit set username', data); });
-    console.log('Set user name as ' + $('input#userName').val());
-}
+// function setUsername() {
+//     myUserName = $('input#userName').val();
+//     console.log('setUserName()');
+//     socket.emit('set username', $('input#userName').val(), function(data) { console.log('emit set username', data); });
+//     console.log('Set user name as ' + $('input#userName').val());
+// }
  
-function sendMessage(trgtUser) {
-    socket.emit('message', 
-                {
-                  "inferSrcUser": true,
-                  "source": "",
-                  "message": $('input#msg').val(),
-                  "target": trgtUser
-                });
-    $('input#msg').val("");
-}
- 
-function setCurrentUsers(usersStr) {
-    console.log('setCurrentUsers()');
-    console.log(usersStr);
 
-    $('select#users >option').remove()
-    appendNewUser('All', false)
-    JSON.parse(usersStr).forEach(function(name) {
-        appendNewUser(name, false);
+ 
+// Initial population should be done automatically now by the view renderer (jade)
+// function setCurrentUsers(usersStr) {
+//     console.log('setCurrentUsers()');
+//     console.log(usersStr);
+//     $('select#users >option').remove()
+//     handleUserJoined('All', false)
+//     JSON.parse(usersStr).forEach(function(name) {
+//         handleUserJoined(name, false);
+//     });
+//     $('select#users').val('All').attr('selected', true);
+// }
+
+function setCSRFToken() {
+  var CSRF_HEADER = 'X-CSRF-Token';
+  var csrf_token = $('meta[name="csrf-token"]').attr('content');
+  jQuery.ajaxPrefilter(function(options, _, xhr) {
+    if ( !xhr.crossDomain ) 
+        xhr.setRequestHeader(CSRF_HEADER, csrf_token);
+  });
+};
+
+function sendMessage(trgtUser, message) {
+  var href = window.location.href;
+  var roomId = href.split("/").reverse();
+  var message = {
+    "target": trgtUser,
+    "body": $('textarea#msg').val()
+  }
+  var data = JSON.stringify(message);
+  if(roomId[1] == 'rooms') { 
+    setCSRFToken();
+    $.post('/rooms/'+roomId[0]+'/message', message, function(data){
+      $('textarea#msg').val(""); // empty the chat box
+      // TODO: Bling for joining a room
     });
-    $('select#users').val('All').attr('selected', true);
+  }
+  // socket.emit('message', 
+  //             {
+  //               "inferSrcUser": true,
+  //               "source": "",
+  //               "message": $('input#msg').val(),
+  //               "target": trgtUser
+  //             });
+  // $('input#msg').val("");
 }
+
+function joinRoom() {
+  // $.post('/users/session', function(data) {
+  //   console.log(data);
+  //   // setCurrentUsers(data.userName);
+  // });
+  var href = window.location.href;
+  var roomId = href.split("/").reverse();
+  if(roomId[1] == 'rooms') { 
+    setCSRFToken();
+    $.post('/rooms/'+roomId[0]+'/join', function(data){
+      // TODO: Bling for joining a room
+      enableJoinRoom(false);
+      enableLeaveRoom(true);
+    });
+  }
+}
+
+
+
+function leaveRoom() {
+  var href = window.location.href;
+  var roomId = href.split("/").reverse();
+  if(roomId[1] == 'rooms') {
+    setCSRFToken();
+    $.post('/rooms/'+roomId[0]+'/leave', function(data){
+      // TODO: Bling for leaving a room
+      enableJoinRoom(true);
+      enableLeaveRoom(false);
+    });
+  }
+}
+
  
 $(function() {
-  enableMsgInput(false);
+
+  // enableMsgInput(false);
+
+  // TODO: Tie both of these to interface items.
+  // joinRoom()
+  // leaveRoom()
+  $('#joinRoom').click(joinRoom);
+  $('#leaveRoom').click(leaveRoom);
 
   socket.on('userJoined', function(msg) {
-    appendNewUser(msg.userName, true);
+    handleUserJoined(msg.userName, true);
   });
    
   socket.on('userLeft', function(msg) {
@@ -80,16 +149,16 @@ $(function() {
   });
  
   socket.on('message', function(msg) {
+    console.log('socket.on(message)...Deliverying yo message!');
+    console.log(msg);
     appendNewMessage(msg);
   });
  
   socket.on('welcome', function(msg) {
-    console.log('msg is...');
-    console.log(msg);
     setFeedback("<span style='color: green'> Connected to room.</span>");
     setCurrentUsers(msg.currentUsers)
-    enableMsgInput(true);
-    enableUsernameField(false);
+    // enableMsgInput(true);
+    // enableUsernameField(false);
   });
  
   socket.on('error', function(msg) {
@@ -98,25 +167,24 @@ $(function() {
       }
   });
   
+  $('button#msgSubmit').click(function(e) {
+    if($('textarea#msg').val() !== "") {
+      sendMessage("All");
+      e.stopPropagation();
+      e.stopped = true;
+      e.preventDefault();
+    }
+  });
 
-  $('input#userName').change(setUsername);
-  $('input#userName').keypress(function(e) {
+  $('textarea#msg').keypress(function(e) {
       if (e.keyCode == 13) {
-          setUsername();
-          // e.stopPropagation();
-          // e.stopped = true;
-          // e.preventDefault();
+          if($('textarea#msg').val() !== "") {
+            sendMessage("All");
+            e.stopPropagation();
+            e.stopped = true;
+            e.preventDefault();
+          }
       }
   });
-   
-  $('input#msg').keypress(function(e) {
-      trgtUser = $('select#users').val();
-      var trgtUser = $('select#users').val();
-      if (e.keyCode == 13) {
-          sendMessage(trgtUser);
-          e.stopPropagation();
-          e.stopped = true;
-          e.preventDefault();
-      }
-  });
+
 });

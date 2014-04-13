@@ -26,8 +26,8 @@ body {
   white-space: pre;
   overflow-y: auto;
   overflow-x: none;
-  width: 400px;
-  height: 100px;
+  /*width: 400px;*/
+  height: 300px;
 }
 
 .shadow {

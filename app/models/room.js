@@ -12,13 +12,13 @@ var mongoose = require('mongoose')
 
 /**
  * Getters
+ // TODO: getChats
  */
 
 var getTags = function (tags) {
   return tags.join(',')
 }
 
-// TODO: getChats
 
 /**
  * Setters
@@ -35,7 +35,7 @@ var setTags = function (tags) {
 var RoomSchema = new Schema({
   title: {type : String, default : '', trim : true},
   body: {type : String, default : '', trim : true},
-  user: {type : Schema.ObjectId, ref : 'User'},
+  user: {type : Schema.ObjectId, ref : 'User'},       // creator
   comments: [{
     body: { type : String, default : '' },
     user: { type : Schema.ObjectId, ref : 'User' },
@@ -46,7 +46,12 @@ var RoomSchema = new Schema({
   //   cdnUri: String,
   //   files: []
   // },
-  createdAt  : {type : Date, default : Date.now}
+  createdAt: { type : Date, default : Date.now },
+  participants :[{
+    user: { type : Schema.ObjectId, ref : 'User' },
+    username: { type: String, ref : 'User' },
+    dateJoined: { type : Date, default : Date.now }
+  }] 
 })
 
 /**
@@ -106,6 +111,7 @@ RoomSchema.methods = {
     }, 'room')
   },
 
+  // See Message (model and controller)
   /**
    * Add comment
    *
@@ -114,20 +120,69 @@ RoomSchema.methods = {
    * @param {Function} cb
    * @api private
    */
+  // addComment: function (user, comment, cb) {
+  //   var notify = require('../mailer/notify')
 
-  addComment: function (user, comment, cb) {
-    var notify = require('../mailer/notify')
+  //   this.comments.push({
+  //     body: comment.body,
+  //     user: user._id
+  //   })
 
-    this.comments.push({
-      body: comment.body,
-      user: user._id
+  //   notify.comment({
+  //     room: this,
+  //     currentUser: user,
+  //     comment: comment.body
+  //   })
+
+  //   this.save(cb)
+  // },
+
+
+  /**
+   * Add participant
+   *
+   * @param {User} user
+   * @param {Object} comment
+   * @param {Function} cb
+   * @api private
+   */
+  addParticipant: function (user, cb) {
+    // var notify = require('../mailer/notify')
+    this.participants.push({
+      user: user._id,
+      username: user.username
     })
 
-    notify.comment({
-      room: this,
-      currentUser: user,
-      comment: comment.body
-    })
+    // notify.participants({
+    //   room: this,
+    //   currentUser: user,
+    //   comment: comment.body
+    // })
+
+    this.save(cb)
+  },
+
+  /**
+   * Remove participant
+   *
+   * @param {User} user
+   * @param {Object} comment
+   * @param {Function} cb
+   * @api private
+   */
+  removeParticipant: function (user, cb) {
+    // var notify = require('../mailer/notify')
+    for(var i = this.participants.length - 1; i >= 0; i--) {
+      if(this.participants[i].user.toString() === user._id.toString()) {
+        this.participants.splice(i, 1);
+      }
+    }
+
+    // notify.participants({
+    //   room: this,
+    //   currentUser: user,
+    //   comment: comment.body
+    // })
 
     this.save(cb)
   }

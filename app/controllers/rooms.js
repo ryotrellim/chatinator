@@ -8,12 +8,13 @@ var mongoose = require('mongoose')
   , _ = require('underscore')
 
 
+
 /**
- * Load
+ * -- Helper --
+ *
+ * loads a particular room.
  */
 exports.load = function(req, res, next, id){
-  var User = mongoose.model('User')
-
   Room.load(id, function (err, room) {
     if (err) return next(err)
     if (!room) return next(new Error('not found'))
@@ -21,6 +22,103 @@ exports.load = function(req, res, next, id){
     next()
   })
 }
+
+/**
+ *
+ * 
+ *
+ * ~~ API ~~
+ *
+ *
+ *
+ **/
+
+/**
+ * joins a particular room
+ */
+exports.join = function(req, res, io){
+  var room = req.room
+  var addUser = true;
+
+  // Go through participants and update entire list
+  for (var i = room.participants.length - 1; i >= 0; i--) {
+    if(room.participants[i].user.toString() == req.user._id.toString())
+    {
+      // TODO: Send different API response (same status code?)
+      console.log('VALIDATOR:  participant already exists.');
+      addUser = false;
+      break;
+    }
+  };
+
+  if(room.user._id.toString() == req.user._id.toString()) {
+    console.log('VALIDATOR:  user is creator.');
+    addUser = false;
+  }
+
+  if(addUser) {
+    room.addParticipant(req.user);
+    io.sockets.emit('userJoined', {userName: req.user.username});
+    // io.sockets.on('connection', function(socket) {
+    //   socket.emit('userJoined', {userName: req.user.username});
+    // });
+  }
+
+  res.send(201, req.room);
+}
+
+/**
+ * Leaves a particular room
+ */
+exports.leave = function(req, res, io){
+  var room = req.room
+  var removeUser = false;
+
+  for (var i = room.participants.length - 1; i >= 0; i--) {
+    if(room.participants[i].user.toString() == req.user._id.toString())
+    {
+      removeUser = true;
+      break;
+    }
+  };
+
+  if(!removeUser) console.log('VALIDATOR:  user is not a participant.');
+
+  if(room.user._id.toString() == req.user._id.toString()) {
+    console.log('VALIDATOR:  user is creator and cannot leave the room.');
+    removeUser = false;
+  }
+
+  if(removeUser) {
+    room.removeParticipant(req.user);  // remove from db, then uypdate other users
+    io.sockets.emit('userLeft', {userName: req.user.username});
+  }
+
+  res.send(201, req.room);
+}
+
+
+/**
+ * Delete a room
+ */
+exports.destroy = function(req, res){
+  var room = req.room
+  room.remove(function(err){
+    req.flash('info', 'Deleted successfully')
+    res.redirect('/rooms')
+  })
+}
+
+
+/**
+ *
+ * 
+ *
+ * -- Views -- 
+ *
+ *
+ *
+ **/
 
 
 /**
@@ -119,18 +217,8 @@ exports.update = function(req, res){
 exports.show = function(req, res){
   res.render('rooms/show', {
     title: req.room.title,
-    room: req.room
+    room: req.room,
+    user: req.user
   })
 }
 
-
-/**
- * Delete a room
- */
-exports.destroy = function(req, res){
-  var room = req.room
-  room.remove(function(err){
-    req.flash('info', 'Deleted successfully')
-    res.redirect('/rooms')
-  })
-}

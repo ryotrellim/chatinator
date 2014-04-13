@@ -4,7 +4,6 @@
  */
 
 exports.requiresLogin = function (req, res, next) {
-  console.log('requiresLogin (in authorization.js)');
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl
     return res.redirect('/login')

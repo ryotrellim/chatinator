@@ -3,12 +3,13 @@
  * Module dependencies.
  */
 
+/**
 module.exports = function (app, passport) {
   var server = require('http').createServer(app),
       io = require('socket.io').listen(server);
 
-      // Welcome Message to new clients
-      messagesArray = [{ 'message':'Time to talk about X.title!' }];
+  // Welcome Message to new clients
+  messagesArray = [{ 'message':'Time to talk about X.title!' }];
 
   io.sockets.on('connection', function (socket) {
       
@@ -18,8 +19,6 @@ module.exports = function (app, passport) {
       
       // INPUT
       socket.on('input', function (data) {
-          console.log("sockets.js here!");
-          console.log(data);
 
           // Append data to collection of messages
           messagesArray.push(data);
@@ -43,22 +42,23 @@ module.exports = function (app, passport) {
     // TODO
   })
 }
-
+*/
 
 
 var connect = require('connect')
   , parseCookie = connect.utils.parseCookie
+  , mongoose = require('mongoose')
+  , User = mongoose.model('User')
+  , users = require('../app/controllers/users')
 
 
-module.exports = function (app, passport, server) {
-  var io = require('socket.io').listen(server);
+module.exports = function (app, passport, io) {
+  // var io = require('socket.io').listen(server);
   var clients = {};
   var socketsOfClients = {};
 
-/**
- * Experimental configuration for authorization
- */
-
+/** Experimental configuration for authorization
+ * 
   // io.configure(function (){
   //   io.set('authorization', function (data, callback) {
 
@@ -91,66 +91,95 @@ module.exports = function (app, passport, server) {
   //     });
   //   });
   // });
+*/
 
+  /**
+   * Establishes a connection with the current client
+   * eg. the client using the browser.  A chatter.
+   **/
   io.sockets.on('connection', function(socket) {
 
-    // Triggered by socket.emit('set username')
-    socket.on('set username', function(userName) {
-      console.log('set username');
-      // Is this an existing user name?
-      if (clients[userName] === undefined) {
-        // Does not exist ... so, proceed
-        clients[userName] = socket.id;
-        socketsOfClients[socket.id] = userName;
-        userNameAvailable(socket.id, userName);
-        userJoined(userName);
-      } else
-      if (clients[userName] === socket.id) {
-        // Ignore for now
-      } else {
-        userNameAlreadyInUse(socket.id, userName);
-      }
-    });
+    // Performed by controller (rooms.js)
+    // 
+    // /* 
+    //  * Triggered by socket.emit('set username')
+    //  */
+    // socket.on('set username', function(userName) {
+    //   // Is this an existing user name?
+    //   if (clients[userName] === undefined) {
+    //     // Does not exist ... so, proceed
+    //     clients[userName] = socket.id;
+    //     socketsOfClients[socket.id] = userName;
+    //     userNameAvailable(socket.id, userName);
+    //     userJoined(userName);
+    //   } else
+    //   if (clients[userName] === socket.id) {
+    //     // Ignore for now
+    //   } else {
+    //     userNameAlreadyInUse(socket.id, userName);
+    //   }
+    // });
 
-
-    // Triggered by socket.emit('message')
+    /* 
+     * Triggered by socket.emit('message')
+     */
     socket.on('message', function(msg) {
-      var srcUser;
-      if (msg.inferSrcUser) {
-        // Infer user name based on the socket id
-        srcUser = socketsOfClients[socket.id];
-      } else {
-        srcUser = msg.source;
-      }
+      console.log('message!!!');
+      console.log(msg);
+      io.sockets.emit('message',
+        {"source": srcUser,
+         "message": msg.message,
+         "target": "All"}); // TODO: Remove target, or build out private messages
+      
+      // var srcUser;
+      // if (msg.inferSrcUser) {
+      //   // Infer user name based on the socket id
+      //   srcUser = socketsOfClients[socket.id];
+      // } else {
+      //   srcUser = msg.source;
+      // }
    
-      if (msg.target == "All") {
-        // broadcast
-        io.sockets.emit('message',
-            {"source": srcUser,
-             "message": msg.message,
-             "target": msg.target});
-      } else {
-        // Look up the socket id
-        console.log(clients);
-        console.log(msg);
-        console.log(msg.target);
-        io.sockets.sockets[clients[msg.target]].emit('message',
-            {"source": srcUser,
-             "message": msg.message,
-             "target": msg.target});
-      }
+      // // console.log(clients);
+      // // console.log(msg.target);
+      
+      // // validation (TODO: Create / Move)
+      // if(isEmpty(clients)) throw "VALIDATOR: Missing clients";
+      // if(!msg.target) throw "VALIDATOR: Missing msg.target";
+
+      // if (msg.target == "All") {
+      //   // broadcast
+      //   io.sockets.emit('message',
+      //       {"source": srcUser,
+      //        "message": msg.message,
+      //        "target": msg.target});
+      // } else {
+      //   // Look up the socket id
+      //   io.sockets.sockets[clients[msg.target]].emit('message',
+      //       {"source": srcUser,
+      //        "message": msg.message,
+      //        "target": msg.target});
+      // }
     })
+
+
+    /* 
+     * Triggered by socket.emit('disconnect')
+     */
     socket.on('disconnect', function() {
       var uName = socketsOfClients[socket.id];
       delete socketsOfClients[socket.id];
       delete clients[uName];
    
-      // relay this message to all the clients
-   
-      userLeft(uName);
+      // ??? This relay this message to all the clients
+      // However, a user hasn't "left" the chat
+      // userLeft(uName);
     })
   })
    
+
+  /**
+   * Emit the userJoined event to all involved
+   **/
   function userJoined(uName) {
       Object.keys(socketsOfClients).forEach(function(sId) {
         io.sockets.sockets[sId].emit('userJoined', { "userName": uName });
@@ -172,5 +201,17 @@ module.exports = function (app, passport, server) {
       io.sockets.sockets[sId].emit('error', { "userNameInUse" : true });
     }, 500);
   }
+
+  /**
+   * Helper functions!
+   **/ 
+  function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+    return true;
+  }
+
 }
 

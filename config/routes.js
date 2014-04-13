@@ -22,7 +22,7 @@ var roomAuth = [auth.requiresLogin, auth.room.hasAuthorization]
  * Expose routes
  */
 
-module.exports = function (app, passport) {
+module.exports = function (app, passport, io) {
 
   // user routes
   app.get('/login', users.login)
@@ -95,6 +95,22 @@ module.exports = function (app, passport) {
   app.put('/rooms/:id', roomAuth, rooms.update)
   app.del('/rooms/:id', roomAuth, rooms.destroy)
 
+  app.post('/rooms/:id/join', auth.requiresLogin, function(res, req){
+    rooms.join(res, req, io)
+  });
+
+  app.post('/rooms/:id/leave', auth.requiresLogin, function(res, req){
+    rooms.leave(res, req, io)
+  });
+
+  var messages = require('../app/controllers/messages')
+  app.post('/rooms/:id/message', auth.requiresLogin, function(res, req){
+    messages.create(res, req, io)
+  });
+  // app.post('/rooms/:id/join', function(res, req) {
+  //   console.log(res)
+  // });
+
   // app.param('id', articles.load)
   app.param('id', rooms.load)
 
@@ -103,11 +119,9 @@ module.exports = function (app, passport) {
   app.get('/', rooms.index)
 
   // comment routes
-  var comments = require('../app/controllers/comments')
-  // app.post('/articles/:id/comments', auth.requiresLogin, comments.create)
-  // app.get('/articles/:id/comments', auth.requiresLogin, comments.create)
-  app.post('/rooms/:id/comments', auth.requiresLogin, comments.create)
-  app.get('/rooms/:id/comments', auth.requiresLogin, comments.create)
+  // var comments = require('../app/controllers/comments')
+  // app.post('/rooms/:id/comments', auth.requiresLogin, comments.create)
+  // app.get('/rooms/:id/comments', auth.requiresLogin, comments.create)
 
   // tag routes
   var tags = require('../app/controllers/tags')

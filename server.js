@@ -41,22 +41,26 @@ var app = express()
 // bootstrap express settings
 require('./config/express')(app, config, passport)
 
-// Bootstrap routes
-require('./config/routes')(app, passport)
-
-
 // Start the app by listening on <port>
 var port = process.env.PORT || 3000
-
-// app.listen(port)
-// console.log('Express app started on port '+port)
 var server = app.listen(port, function(){
   console.log("Express server listening on port " + port);
 });
+var io = require('socket.io').listen(server);
+var clients = {};
+var socketsOfClients = {};
 
 // bootstrap sockets.io settings
-require('./config/sockets')(app, passport, server)
-// var io = require('socket.io').listen(server);
+require('./config/sockets')(app, passport, io)
+// require('./config/sockets')(app, passport, io, clients, socketsOfClients)
+
+// Bootstrap routes
+require('./config/routes')(app, passport, io)
+// require('./config/routes')(app, passport, io, clients, socketsOfClients)
+
+
+
+
 
 
 // expose app

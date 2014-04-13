@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"usern",
+				"username"
+			],
+			[
+				"date",
+				"dateJoined"
+			],
+			[
+				"parti",
+				"participants"
+			],
+			[
+				"csrf",
+				"csrfToken"
+			],
+			[
+				"defa",
+				"defaultValue"
+			],
+			[
+				"appendN",
+				"appendNewUser"
+			],
+			[
 				"for",
 				"for	for (…) {…} (Improved Native For-Loop)"
 			],
@@ -14,10 +38,6 @@
 			[
 				"get",
 				"getStartingData"
-			],
-			[
-				"date",
-				"Date"
 			],
 			[
 				"da",
@@ -64,26 +84,18 @@
 	"buffers":
 	[
 		{
-			"file": "config/routes.js",
+			"file": "About/About.txt",
 			"settings":
 			{
-				"buffer_size": 3835,
-				"line_ending": "Unix"
+				"buffer_size": 4394,
+				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "app/controllers/rooms.js",
 			"settings":
 			{
-				"buffer_size": 2346,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/rooms/form.jade",
-			"settings":
-			{
-				"buffer_size": 1375,
+				"buffer_size": 3069,
 				"line_ending": "Windows"
 			}
 		},
@@ -91,15 +103,33 @@
 			"file": "app/models/room.js",
 			"settings":
 			{
-				"buffer_size": 3319,
+				"buffer_size": 3969,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/views/comments/form.jade",
+			"file": "config/sockets.js",
 			"settings":
 			{
-				"buffer_size": 320,
+				"buffer_size": 5547,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 8688 files for \"csrf\"\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\articles\\form.jade:\n   14        form.form-horizontal(method=\"post\", action=action, enctype=\"multipart/form-data\")\n   15  \n   16:         input(type=\"hidden\", name=\"_csrf\", value=\"#{csrf_token}\")\n   17  \n   18          - if (!article.isNew)\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\articles\\show.jade:\n   28      br\n   29      form.center.form-inline.confirm(action=\"/articles/\"+article.id, method=\"post\")\n   30:       input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n   31        a.btn(href='/articles/'+article._id+'/edit', title=\"edit\") Edit\n   32        &nbsp;&nbsp;\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\articles\\show.mobile.jade:\n   28      br\n   29      form.center.form-inline.confirm(action=\"/articles/\"+article.id, method=\"post\")\n   30:       input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n   31        a.btn(href='/articles/'+article._id+'/edit', title=\"edit\") Edit\n   32        &nbsp;&nbsp;\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\comments\\form.jade:\n    1  form.form-vertical(method=\"post\", action=\"/rooms/#{room._id}/comments\")\n    2:   input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n    3    .control-group\n    4      .controls\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\includes\\head.jade:\n   18    meta(property=\"og:site_name\", content=\"Chatinator\")\n   19    // meta(property=\"fb:admins\", content=\"1037213945\")\n   20:   meta(name=\"csrf-token\", content=\"#{csrf_token}\")\n   21  \n   22    //\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\rooms\\form.jade:\n   13      .span7\n   14        form.form-horizontal(method=\"post\", action=action, enctype=\"multipart/form-data\")\n   15:         input(type=\"hidden\", name=\"_csrf\", value=\"#{csrf_token}\")\n   16  \n   17          - if (!room.isNew)\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\rooms\\show.jade:\n   29      br\n   30      form.center.form-inline.confirm(action=\"/rooms/\"+room.id, method=\"post\")\n   31:       //input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n   32:       //input#csrf(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n   33        a.btn(href='/rooms/'+room._id+'/edit', title=\"edit\") Edit\n   34        &nbsp;&nbsp;\n   ..\n   38    h1 Chat\n   39      label(for=\"userName\") User name: (Hit Enter) \n   40:     // use csrf token, above, for authentication\n   41      input#userName(type=\"text\", size=\"30\")\n   42    span#feedback\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\rooms\\show.mobile.jade:\n   28      br\n   29      form.center.form-inline.confirm(action=\"/rooms/\"+room.id, method=\"post\")\n   30:       input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n   31        a.btn(href='/rooms/'+room._id+'/edit', title=\"edit\") Edit\n   32        &nbsp;&nbsp;\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\users\\login.jade:\n    3  block auth\n    4    form.offset1.login.form-horizontal(action=\"/users/session\", method=\"post\")\n    5:     input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n    6  \n    7      p.offset2.error= message\n\nC:\\Users\\Troy\\web\\chatinator\\app\\views\\users\\signup.jade:\n    3  block auth\n    4    form.offset1.form-horizontal(action=\"/users\", method=\"post\")\n    5:     input(type='hidden', name='_csrf', value=\"#{csrf_token}\")\n    6      .control-group\n    7        label.control-label(for='name') Full name\n\nC:\\Users\\Troy\\web\\chatinator\\chatinator.sublime-workspace:\n    5  		[\n    6  			[\n    7: 				\"csrf\",\n    8: 				\"csrfToken\"\n    9  			],\n   10  			[\n   ..\n  199  		\"/C/Users/Troy/web/chatinator/app/views/rooms/form.jade\",\n  200  		\"/C/Users/Troy/web/chatinator/config/passport.js\",\n  201: 		\"/C/Users/Troy/web/chatinator/node_modules/connect/lib/middleware/csrf.js\",\n  202  		\"/C/Users/Troy/web/chatinator/config/middlewares/authorization.js\",\n  203  		\"/C/Users/Troy/web/chatinator/app/views/rooms/show.jade\",\n  ...\n  319  			\"console.log\",\n  320  			\"io\",\n  321: 			\"csrf_token\",\n  322: 			\"csrf\",\n  323  			\"..........');\\n\",\n  324: 			\"csrf\",\n  325  			\"rooms/id/join\\n\",\n  326  			\"{\\n\",\n  ...\n  330  			\"/users/session\",\n  331  			\"session\",\n  332: 			\"req.session._csrf\",\n  333: 			\"app.use(express.csrf())\",\n  334: 			\"express.csrf\",\n  335  			\"app.use\",\n  336  			\"load\",\n  ...\n 1054  			],\n 1055  			[\n 1056: 				\"csrf.j\",\n 1057: 				\"node_modules/connect/lib/middleware/csrf.js\"\n 1058  			],\n 1059  			[\n ....\n 1066  			],\n 1067  			[\n 1068: 				\"csrf\",\n 1069: 				\"node_modules/connect/lib/middleware/csrf.js\"\n 1070  			],\n 1071  			[\n\nC:\\Users\\Troy\\web\\chatinator\\config\\express.js:\n   68      app.use(helpers(pkg.name))\n   69  \n   70:     // adds CSRF support\n   71      if (process.env.NODE_ENV !== 'test') {\n   72:       app.use(express.csrf())\n   73      }\n   74:     // app.use(express.csrf())\n   75  \n   76      // This could be moved to view-helpers :-)\n   77      app.use(function(req, res, next){\n   78:       // res.locals.csrf_token = req.session._csrf\n   79:       res.locals.csrf_token = req.csrfToken()\n   80        next()\n   81      })\n\nC:\\Users\\Troy\\web\\chatinator\\node_modules\\connect\\lib\\index.js:\n   21   *\n   22   *  - [logger](logger.html) request logger with custom format support\n   23:  *  - [csrf](csrf.html) Cross-site request forgery protection\n   24   *  - [compress](compress.html) Gzip compression middleware\n   25   *  - [basicAuth](basicAuth.html) basic http authentication\n\nC:\\Users\\Troy\\web\\chatinator\\node_modules\\connect\\lib\\middleware\\csrf.js:\n    1  /*!\n    2:  * Connect - csrf\n    3   * Copyright(c) 2011 Sencha Inc.\n    4   * MIT Licensed\n    .\n   14  \n   15  /**\n   16:  * Anti CSRF:\n   17   *\n   18:  * CSRF protection middleware.\n   19   *\n   20:  * This middleware adds a `req.csrfToken()` function to make a token\n   21   * which should be added to requests which mutate\n   22   * state, within a hidden form field, query-string etc. This\n   ..\n   25   * The default `value` function checks `req.body` generated\n   26   * by the `bodyParser()` middleware, `req.query` generated\n   27:  * by `query()`, and the \"X-CSRF-Token\" header field.\n   28   *\n   29   * This middleware requires session support, thus should be added\n   ..\n   38   */\n   39  \n   40: module.exports = function csrf(options) {\n   41    options = options || {};\n   42    var value = options.value || defaultValue;\n   ..\n   45      \n   46      // already have one\n   47:     var secret = req.session._csrfSecret;\n   48      if (secret) return createToken(secret);\n   49  \n   ..\n   51      uid(24, function(err, secret){\n   52        if (err) return next(err);\n   53:       req.session._csrfSecret = secret;\n   54        createToken(secret);\n   55      });\n   ..\n   60  \n   61        // lazy-load token\n   62:       req.csrfToken = function csrfToken() {\n   63          return token || (token = saltedToken(secret));\n   64        };\n   65        \n   66        // compatibility with old middleware\n   67:       Object.defineProperty(req.session, '_csrf', {\n   68          configurable: true,\n   69          get: function() {\n   70:           console.warn('req.session._csrf is deprecated, use req.csrfToken() instead');\n   71:           return req.csrfToken();\n   72          }\n   73        });\n   ..\n   90  /**\n   91   * Default value function, checking the `req.body`\n   92:  * and `req.query` for the CSRF token.\n   93   *\n   94   * @param {IncomingMessage} req\n   ..\n   98  \n   99  function defaultValue(req) {\n  100:   return (req.body && req.body._csrf)\n  101:     || (req.query && req.query._csrf)\n  102:     || (req.headers['x-csrf-token'])\n  103      || (req.headers['x-xsrf-token']);\n  104  }\n  ...\n  117  \n  118  /**\n  119:  * Creates a CSRF token from a given salt and secret.\n  120   *\n  121   * @param {String} salt (should be 10 characters)\n  ...\n  133  \n  134  /**\n  135:  * Checks if a given CSRF token matches the given secret.\n  136   *\n  137   * @param {String} token\n\nC:\\Users\\Troy\\web\\chatinator\\node_modules\\connect\\package.json:\n   55      \"test\": \"make\"\n   56    },\n   57:   \"readme\": \"# Connect [![build status](https://secure.travis-ci.org/senchalabs/connect.png)](http://travis-ci.org/senchalabs/connect)\\n\\n  Connect is an extensible HTTP server framework for [node](http://nodejs.org), providing high performance \\\"plugins\\\" known as _middleware_.\\n\\n Connect is bundled with over _20_ commonly used middleware, including\\n a logger, session support, cookie parser, and [more](http://senchalabs.github.com/connect). Be sure to view the 2.x [documentation](http://senchalabs.github.com/connect/).\\n\\n```js\\nvar connect = require('connect')\\n  , http = require('http');\\n\\nvar app = connect()\\n  .use(connect.favicon())\\n  .use(connect.logger('dev'))\\n  .use(connect.static('public'))\\n  .use(connect.directory('public'))\\n  .use(connect.cookieParser())\\n  .use(connect.session({ secret: 'my secret here' }))\\n  .use(function(req, res){\\n    res.end('Hello from Connect!\\\\n');\\n  });\\n\\nhttp.createServer(app).listen(3000);\\n```\\n\\n## Middleware\\n\\n  - [basicAuth](http://www.senchalabs.org/connect/basicAuth.html)\\n  - [bodyParser](http://www.senchalabs.org/connect/bodyParser.html)\\n  - [compress](http://www.senchalabs.org/connect/compress.html)\\n  - [cookieParser](http://www.senchalabs.org/connect/cookieParser.html)\\n  - [cookieSession](http://www.senchalabs.org/connect/cookieSession.html)\\n  - [csrf](http://www.senchalabs.org/connect/csrf.html)\\n  - [directory](http://www.senchalabs.org/connect/directory.html)\\n  - [errorHandler](http://www.senchalabs.org/connect/errorHandler.html)\\n  - [favicon](http://www.senchalabs.org/connect/favicon.html)\\n  - [json](http://www.senchalabs.org/connect/json.html)\\n  - [limit](http://www.senchalabs.org/connect/limit.html)\\n  - [logger](http://www.senchalabs.org/connect/logger.html)\\n  - [methodOverride](http://www.senchalabs.org/connect/methodOverride.html)\\n  - [multipart](http://www.senchalabs.org/connect/multipart.html)\\n  - [urlencoded](http://www.senchalabs.org/connect/urlencoded.html)\\n  - [query](http://www.senchalabs.org/connect/query.html)\\n  - [responseTime](http://www.senchalabs.org/connect/responseTime.html)\\n  - [session](http://www.senchalabs.org/connect/session.html)\\n  - [static](http://www.senchalabs.org/connect/static.html)\\n  - [staticCache](http://www.senchalabs.org/connect/staticCache.html)\\n  - [subdomains](http://www.senchalabs.org/connect/subdomains.html)\\n  - [vhost](http://www.senchalabs.org/connect/vhost.html)\\n\\n## Running Tests\\n\\nfirst:\\n\\n    $ npm install -d\\n\\nthen:\\n\\n    $ make test\\n\\n## Contributors\\n\\n https://github.com/senchalabs/connect/graphs/contributors\\n\\n## Node Compatibility\\n\\n  Connect `< 1.x` is compatible with node 0.2.x\\n\\n\\n  Connect `1.x` is compatible with node 0.4.x\\n\\n\\n  Connect `2.x` is compatible with node 0.6.x\\n\\n\\n  Connect (_master_) is compatible with node 0.8.x\\n\\n## CLA\\n\\n [http://sencha.com/cla](http://sencha.com/cla)\\n\\n## License\\n\\nView the [LICENSE](https://github.com/senchalabs/connect/blob/master/LICENSE) file. The [Silk](http://www.famfamfam.com/lab/icons/silk/) icons used by the `directory` middleware created by/copyright of [FAMFAMFAM](http://www.famfamfam.com/).\\n\",\n   58    \"readmeFilename\": \"Readme.md\",\n   59    \"_id\": \"connect@2.12.0\",\n\nC:\\Users\\Troy\\web\\chatinator\\node_modules\\connect\\Readme.md:\n   31    - [cookieParser](http://www.senchalabs.org/connect/cookieParser.html)\n   32    - [cookieSession](http://www.senchalabs.org/connect/cookieSession.html)\n   33:   - [csrf](http://www.senchalabs.org/connect/csrf.html)\n   34    - [directory](http://www.senchalabs.org/connect/directory.html)\n   35    - [errorHandler](http://www.senchalabs.org/connect/errorHandler.html)\n\nC:\\Users\\Troy\\web\\chatinator\\public\\js\\chat.js:\n   78    // });\n   79  \n   80:   var CSRF_HEADER = 'X-CSRF-Token';\n   81:   var setCSRFToken = function(securityToken) {\n   82      jQuery.ajaxPrefilter(function(options, _, xhr) {\n   83        if ( !xhr.crossDomain ) \n   84:           xhr.setRequestHeader(CSRF_HEADER, securityToken);\n   85      });\n   86    };\n   87:   var csrf_token = $('meta[name=\"csrf-token\"]').attr('content');\n   88:   setCSRFToken(csrf_token);\n   89  \n   90    var href = window.location.href;\n   ..\n   93      $.post('/rooms/'+roomId[0]+'/join', function(data){\n   94        console.log(data);\n   95:       socket.emit('set username', csrf_token);\n   96        // console.log(data);\n   97        // setCurrentUsers(data.userName);\n   ..\n  135    });\n  136    \n  137: /** Take username from logged in user (csrf_token)\n  138    $('input#userName').change(setUsername);\n  139    $('input#userName').keypress(function(e) {\n\nC:\\Users\\Troy\\web\\chatinator\\socket\\node_modules\\express\\node_modules\\connect\\lib\\index.js:\n   20   *\n   21   *  - [logger](logger.html) request logger with custom format support\n   22:  *  - [csrf](csrf.html) Cross-site request forgery protection\n   23   *  - [compress](compress.html) Gzip compression middleware\n   24   *  - [basicAuth](basicAuth.html) basic http authentication\n\nC:\\Users\\Troy\\web\\chatinator\\socket\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\csrf.js:\n    1  /*!\n    2:  * Connect - csrf\n    3   * Copyright(c) 2011 Sencha Inc.\n    4   * MIT Licensed\n    .\n   14  \n   15  /**\n   16:  * Anti CSRF:\n   17   *\n   18:  * CSRF protection middleware.\n   19   *\n   20:  * This middleware adds a `req.csrfToken()` function to make a token\n   21   * which should be added to requests which mutate\n   22   * state, within a hidden form field, query-string etc. This\n   ..\n   25   * The default `value` function checks `req.body` generated\n   26   * by the `bodyParser()` middleware, `req.query` generated\n   27:  * by `query()`, and the \"X-CSRF-Token\" header field.\n   28   *\n   29   * This middleware requires session support, thus should be added\n   ..\n   38   */\n   39  \n   40: module.exports = function csrf(options) {\n   41    options = options || {};\n   42    var value = options.value || defaultValue;\n   ..\n   45      \n   46      // already have one\n   47:     var secret = req.session._csrfSecret;\n   48      if (secret) return createToken(secret);\n   49  \n   ..\n   51      uid(24, function(err, secret){\n   52        if (err) return next(err);\n   53:       req.session._csrfSecret = secret;\n   54        createToken(secret);\n   55      });\n   ..\n   60  \n   61        // lazy-load token\n   62:       req.csrfToken = function csrfToken() {\n   63          return token || (token = saltedToken(secret));\n   64        };\n   65        \n   66        // compatibility with old middleware\n   67:       Object.defineProperty(req.session, '_csrf', {\n   68          configurable: true,\n   69          get: function() {\n   70:           console.warn('req.session._csrf is deprecated, use req.csrfToken() instead');\n   71:           return req.csrfToken();\n   72          }\n   73        });\n   ..\n   89  /**\n   90   * Default value function, checking the `req.body`\n   91:  * and `req.query` for the CSRF token.\n   92   *\n   93   * @param {IncomingMessage} req\n   ..\n   97  \n   98  function defaultValue(req) {\n   99:   return (req.body && req.body._csrf)\n  100:     || (req.query && req.query._csrf)\n  101:     || (req.headers['x-csrf-token'])\n  102      || (req.headers['x-xsrf-token']);\n  103  }\n  ...\n  116  \n  117  /**\n  118:  * Creates a CSRF token from a given salt and secret.\n  119   *\n  120   * @param {String} salt (should be 10 characters)\n  ...\n  132  \n  133  /**\n  134:  * Checks if a given CSRF token matches the given secret.\n  135   *\n  136   * @param {String} token\n\nC:\\Users\\Troy\\web\\chatinator\\socket\\node_modules\\express\\node_modules\\connect\\package.json:\n   52      \"test\": \"make\"\n   53    },\n   54:   \"readme\": \"[![build status](https://secure.travis-ci.org/senchalabs/connect.png)](http://travis-ci.org/senchalabs/connect)\\n# Connect\\n\\n  Connect is an extensible HTTP server framework for [node](http://nodejs.org), providing high performance \\\"plugins\\\" known as _middleware_.\\n\\n Connect is bundled with over _20_ commonly used middleware, including\\n a logger, session support, cookie parser, and [more](http://senchalabs.github.com/connect). Be sure to view the 2.x [documentation](http://senchalabs.github.com/connect/).\\n\\n```js\\nvar connect = require('connect')\\n  , http = require('http');\\n\\nvar app = connect()\\n  .use(connect.favicon())\\n  .use(connect.logger('dev'))\\n  .use(connect.static('public'))\\n  .use(connect.directory('public'))\\n  .use(connect.cookieParser())\\n  .use(connect.session({ secret: 'my secret here' }))\\n  .use(function(req, res){\\n    res.end('Hello from Connect!\\\\n');\\n  });\\n\\nhttp.createServer(app).listen(3000);\\n```\\n\\n## Middleware\\n\\n  - [csrf](http://www.senchalabs.org/connect/csrf.html)\\n  - [basicAuth](http://www.senchalabs.org/connect/basicAuth.html)\\n  - [bodyParser](http://www.senchalabs.org/connect/bodyParser.html)\\n  - [json](http://www.senchalabs.org/connect/json.html)\\n  - [multipart](http://www.senchalabs.org/connect/multipart.html)\\n  - [urlencoded](http://www.senchalabs.org/connect/urlencoded.html)\\n  - [cookieParser](http://www.senchalabs.org/connect/cookieParser.html)\\n  - [directory](http://www.senchalabs.org/connect/directory.html)\\n  - [compress](http://www.senchalabs.org/connect/compress.html)\\n  - [errorHandler](http://www.senchalabs.org/connect/errorHandler.html)\\n  - [favicon](http://www.senchalabs.org/connect/favicon.html)\\n  - [limit](http://www.senchalabs.org/connect/limit.html)\\n  - [logger](http://www.senchalabs.org/connect/logger.html)\\n  - [methodOverride](http://www.senchalabs.org/connect/methodOverride.html)\\n  - [query](http://www.senchalabs.org/connect/query.html)\\n  - [responseTime](http://www.senchalabs.org/connect/responseTime.html)\\n  - [session](http://www.senchalabs.org/connect/session.html)\\n  - [static](http://www.senchalabs.org/connect/static.html)\\n  - [staticCache](http://www.senchalabs.org/connect/staticCache.html)\\n  - [vhost](http://www.senchalabs.org/connect/vhost.html)\\n  - [subdomains](http://www.senchalabs.org/connect/subdomains.html)\\n  - [cookieSession](http://www.senchalabs.org/connect/cookieSession.html)\\n\\n## Running Tests\\n\\nfirst:\\n\\n    $ npm install -d\\n\\nthen:\\n\\n    $ make test\\n\\n## Authors\\n\\n Below is the output from [git-summary](http://github.com/visionmedia/git-extras).\\n\\n\\n     project: connect\\n     commits: 2033\\n     active : 301 days\\n     files  : 171\\n     authors: \\n      1414\\tTj Holowaychuk          69.6%\\n       298\\tvisionmedia             14.7%\\n       191\\tTim Caswell             9.4%\\n        51\\tTJ Holowaychuk          2.5%\\n        10\\tRyan Olds               0.5%\\n         8\\tAstro                   0.4%\\n         5\\tNathan Rajlich          0.2%\\n         5\\tJakub Nešetřil          0.2%\\n         3\\tDaniel Dickison         0.1%\\n         3\\tDavid Rio Deiros        0.1%\\n         3\\tAlexander Simmerl       0.1%\\n         3\\tAndreas Lind Petersen   0.1%\\n         2\\tAaron Heckmann          0.1%\\n         2\\tJacques Crocker         0.1%\\n         2\\tFabian Jakobs           0.1%\\n         2\\tBrian J Brennan         0.1%\\n         2\\tAdam Malcontenti-Wilson 0.1%\\n         2\\tGlen Mailer             0.1%\\n         2\\tJames Campos            0.1%\\n         1\\tTrent Mick              0.0%\\n         1\\tTroy Kruthoff           0.0%\\n         1\\tWei Zhu                 0.0%\\n         1\\tcomerc                  0.0%\\n         1\\tdarobin                 0.0%\\n         1\\tnateps                  0.0%\\n         1\\tMarco Sanson            0.0%\\n         1\\tArthur Taylor           0.0%\\n         1\\tAseem Kishore           0.0%\\n         1\\tBart Teeuwisse          0.0%\\n         1\\tCameron Howey           0.0%\\n         1\\tChad Weider             0.0%\\n         1\\tCraig Barnes            0.0%\\n         1\\tEran Hammer-Lahav       0.0%\\n         1\\tGregory McWhirter       0.0%\\n         1\\tGuillermo Rauch         0.0%\\n         1\\tJae Kwon                0.0%\\n         1\\tJakub Nesetril          0.0%\\n         1\\tJoshua Peek             0.0%\\n         1\\tJxck                    0.0%\\n         1\\tAJ ONeal                0.0%\\n         1\\tMichael Hemesath        0.0%\\n         1\\tMorten Siebuhr          0.0%\\n         1\\tSamori Gorse            0.0%\\n         1\\tTom Jensen              0.0%\\n\\n## Node Compatibility\\n\\n  Connect `< 1.x` is compatible with node 0.2.x\\n\\n\\n  Connect `1.x` is compatible with node 0.4.x\\n\\n\\n  Connect (_master_) `2.x` is compatible with node 0.6.x\\n\\n## CLA\\n\\n [http://sencha.com/cla](http://sencha.com/cla)\\n\\n## License\\n\\nView the [LICENSE](https://github.com/senchalabs/connect/blob/master/LICENSE) file. The [Silk](http://www.famfamfam.com/lab/icons/silk/) icons used by the `directory` middleware created by/copyright of [FAMFAMFAM](http://www.famfamfam.com/).\\n\",\n   55    \"readmeFilename\": \"Readme.md\",\n   56    \"_id\": \"connect@2.9.0\",\n\nC:\\Users\\Troy\\web\\chatinator\\socket\\node_modules\\express\\node_modules\\connect\\Readme.md:\n   27  ## Middleware\n   28  \n   29:   - [csrf](http://www.senchalabs.org/connect/csrf.html)\n   30    - [basicAuth](http://www.senchalabs.org/connect/basicAuth.html)\n   31    - [bodyParser](http://www.senchalabs.org/connect/bodyParser.html)\n\n106 matches across 21 files\n\n\nSearching 8688 files for \"addComment\"\n\nC:\\Users\\Troy\\web\\chatinator\\About\\About.txt:\n   96               - Defines the mongoose schemas\n   97               - Validates input models\n   98:              - Place for additional methods (addComment, uploadImage, etc.)\n   99  \n  100  app > views > includes - For every-page generics like footers and headers\n\nC:\\Users\\Troy\\web\\chatinator\\app\\controllers\\comments.js:\n   16    if (!req.body.body) return res.redirect('/rooms/'+ room.id)\n   17  \n   18:   room.addComment(user, req.body, function (err) {\n   19      if (err) return res.render('500')\n   20      res.redirect('/rooms/'+ room.id)\n\nC:\\Users\\Troy\\web\\chatinator\\app\\models\\article.js:\n  114     */\n  115  \n  116:   addComment: function (user, comment, cb) {\n  117      var notify = require('../mailer/notify')\n  118  \n\nC:\\Users\\Troy\\web\\chatinator\\app\\models\\room.js:\n  119     * @api private\n  120     */\n  121:   addComment: function (user, comment, cb) {\n  122      var notify = require('../mailer/notify')\n  123  \n\nC:\\Users\\Troy\\web\\chatinator\\chatinator.sublime-workspace:\n  360  			\"\\nmodule.exports\",\n  361  			\"article\",\n  362: 			\"addComment\",\n  363  			\"app.js\",\n  364  			\"var socket = io.connect('http://localhost');\",\n\nC:\\Users\\Troy\\web\\chatinator\\node_modules\\nodemon\\node_modules\\update-notifier\\node_modules\\configstore\\node_modules\\js-yaml\\node_modules\\esprima\\esprima.js:\n 3115      // the comments is active.\n 3116  \n 3117:     function addComment(type, value, start, end, loc) {\n 3118          assert(typeof start === 'number', 'Comment must have valid position');\n 3119  \n ....\n 3154                      };\n 3155                      lineComment = false;\n 3156:                     addComment('Line', comment, start, index - 1, loc);\n 3157                      if (ch === '\\r' && source[index] === '\\n') {\n 3158                          ++index;\n ....\n 3168                          column: length - lineStart\n 3169                      };\n 3170:                     addComment('Line', comment, start, length, loc);\n 3171                  } else {\n 3172                      comment += ch;\n ....\n 3202                                  column: index - lineStart\n 3203                              };\n 3204:                             addComment('Block', comment, start, index, loc);\n 3205                              comment = '';\n 3206                          }\n ....\n 3225                          };\n 3226                          lineComment = false;\n 3227:                         addComment('Line', comment, start, index, loc);\n 3228                      }\n 3229                  } else if (ch === '*') {\n\n10 matches across 6 files\n",
+			"settings":
+			{
+				"buffer_size": 23763,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "app/controllers/comments.js",
+			"settings":
+			{
+				"buffer_size": 377,
 				"line_ending": "Unix"
 			}
 		},
@@ -107,23 +137,39 @@
 			"file": "server.js",
 			"settings":
 			{
-				"buffer_size": 1257,
+				"buffer_size": 1325,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/app.js",
+			"file": "config/routes.js",
 			"settings":
 			{
-				"buffer_size": 428,
+				"buffer_size": 3204,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/express.js",
+			"settings":
+			{
+				"buffer_size": 2976,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/chat.js",
+			"settings":
+			{
+				"buffer_size": 4407,
+				"line_ending": "Windows"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 311.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -180,53 +226,69 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Troy/web/chatinator/config/sockets.js",
-		"/C/Users/Troy/web/chatinator/package.json",
-		"/C/Users/Troy/web/chatinator/config/express.js",
+		"/C/Users/Troy/web/chatinator/app/models/user.js",
 		"/C/Users/Troy/web/chatinator/config/config.js",
+		"/C/Users/Troy/web/chatinator/package.json",
+		"/C/Users/Troy/web/chatinator/app/controllers/users.js",
+		"/C/Users/Troy/web/chatinator/app/models/room.js",
+		"/C/Users/Troy/web/chatinator/public/js/chat.js",
+		"/C/Users/Troy/web/chatinator/public/js/app.js",
+		"/C/Users/Troy/web/chatinator/app/views/rooms/show.jade",
+		"/C/Users/Troy/web/chatinator/app/views/rooms/index.jade",
+		"/C/Users/Troy/web/chatinator/public/css/app.css",
+		"/C/Users/Troy/web/chatinator/app/controllers/rooms.js",
+		"/C/Users/Troy/web/chatinator/README.md",
+		"/C/Users/Troy/web/chatinator/server.js",
+		"/C/Users/Troy/web/chatinator/config/express.js",
+		"/C/Users/Troy/web/chatinator/app/views/rooms/form.jade",
 		"/C/Users/Troy/web/chatinator/config/passport.js",
+		"/C/Users/Troy/web/chatinator/node_modules/connect/lib/middleware/csrf.js",
+		"/C/Users/Troy/web/chatinator/config/middlewares/authorization.js",
+		"/C/Users/Troy/web/chatinator/app/views/includes/head.jade",
+		"/C/Users/Troy/web/chatinator/app/views/rooms/show.mobile.jade",
+		"/C/Users/Troy/web/chatinator/lib/utils.js",
+		"/C/Users/Troy/web/chatinator/app/controllers/comments.js",
+		"/C/Users/Troy/web/chatinator/socket/node_modules/express/lib/middleware.js",
+		"/C/Users/Troy/web/chatinator/app/views/layouts/mobile.jade",
+		"/C/Users/Troy/web/chatinator/app/views/layouts/default.jade",
+		"/C/Users/Troy/web/chatinator/app/views/includes/foot.jade",
+		"/C/Users/Troy/web/chatinator/config/routes.js",
+		"/C/Users/Troy/web/chatinator/socket/app.js",
+		"/C/Users/Troy/web/chatinator/public/js/bootbox.js",
+		"/C/Users/Troy/web/chatinator/app/views/comments/form.jade",
+		"/C/Users/Troy/web/chatinator/app/mailer/notify.js",
+		"/C/Users/Troy/web/chatinator/app/controllers/articles.js",
+		"/C/Users/Troy/web/chatinator/node_modules/express/bin/express",
+		"/C/Users/Troy/web/chatinator/app/views/comments/comment.jade",
+		"/C/Users/Troy/web/chatinator/node_modules/forever/node_modules/flatiron/examples/http-sample.js",
+		"/C/Users/Troy/web/chatinator/node_modules/mongoose/README.md",
+		"/C/Users/Troy/web/chatinator/app/controllers/tags.js",
+		"/C/Users/Troy/web/chatinator/About.txt",
+		"/C/Users/Troy/web/chatinator/config/sockets.js",
 		"/C/Users/Troy/web/chatinator/node_modules/mongoose/lib/model.js",
 		"/C/Users/Troy/web/chatinator/app/views/rooms/new.jade",
-		"/C/Users/Troy/web/chatinator/server.js",
-		"/C/Users/Troy/web/chatinator/app/views/layouts/default.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/index.jade",
-		"/C/Users/Troy/web/chatinator/app/views/rooms/index.jade",
 		"/C/Users/Troy/web/chatinator/app/models/article.js",
 		"/C/Users/Troy/web/chatinator/test/test-users.js",
 		"/C/Users/Troy/web/chatinator/test/test-articles.js",
 		"/C/Users/Troy/web/chatinator/test/test-rooms.js",
 		"/C/Users/Troy/web/chatinator/node_modules/forever/node_modules/flatiron/README.md",
-		"/C/Users/Troy/web/chatinator/config/middlewares/authorization.js",
-		"/C/Users/Troy/web/chatinator/config/routes.js",
 		"/C/Users/Troy/web/chatinator/app/views/includes/header.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/edit.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/new.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/show.jade",
-		"/C/Users/Troy/web/chatinator/app/views/rooms/show.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/show.mobile.jade",
-		"/C/Users/Troy/web/chatinator/app/views/rooms/show.mobile.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/form.jade",
-		"/C/Users/Troy/web/chatinator/app/views/rooms/form.jade",
 		"/C/Users/Troy/web/chatinator/app/views/articles/index.mobile.jade",
 		"/C/Users/Troy/web/chatinator/app/views/rooms/index.mobile.jade",
-		"/C/Users/Troy/web/chatinator/app/controllers/rooms.js",
-		"/C/Users/Troy/web/chatinator/app/views/includes/foot.jade",
 		"/C/Users/Troy/web/chatinator/app/views/includes/footer.jade",
-		"/C/Users/Troy/web/chatinator/app/views/includes/head.jade",
 		"/C/Users/Troy/web/chatinator/app/views/includes/messages.jade",
-		"/C/Users/Troy/web/chatinator/app/models/room.js",
-		"/C/Users/Troy/web/chatinator/app/controllers/tags.js",
-		"/C/Users/Troy/web/chatinator/app/controllers/comments.js",
-		"/C/Users/Troy/web/chatinator/app/controllers/articles.js",
 		"/C/Users/Troy/web/chatinator/node_modules/mongoose/lib/connection.js",
 		"/C/Users/Troy/web/chatinator/node_modules/connect-mongo/lib/connect-mongo.js",
-		"/C/Users/Troy/web/chatinator/app/views/layouts/mobile.jade",
 		"/C/Users/Troy/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Troy/web/chatinator/config/imager.js",
 		"/C/Users/Troy/AppData/Roaming/Sublime Text 2/Packages/DocBlockr/Base File.sublime-settings",
 		"/C/Users/Troy/AppData/Roaming/Sublime Text 2/Packages/sublime-jslint/sublime-jslint.sublime-settings",
-		"/C/Users/Troy/web/chatinator/lib/utils.js",
-		"/C/Users/Troy/web/chatinator/README.md",
 		"/C/Users/Troy/web/chatinator/config/config.example.js",
 		"/C/Users/Troy/web/convotron/views/index.html",
 		"/C/Users/Troy/web/convotron/views/createUser.html",
@@ -276,6 +338,10 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"C:\\Users\\Troy\\web\\chatinator\\",
+			"C:\\Users\\Troy\\web\\chatinator\\app\\views",
+			"C:\\Users\\Troy\\web\\chatinator\\",
+			"C:\\Users\\Troy\\web\\chatinator\\public\\js",
 			""
 		]
 	},
@@ -284,6 +350,72 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"addComment",
+			"csrf",
+			"next",
+			"socket.get",
+			"module.exports",
+			"app.use",
+			"controll",
+			"foo",
+			"socket.emit('set username')",
+			"message",
+			"getAndSetCurrentUser",
+			"enableMsgInput",
+			"msg",
+			"set username",
+			"------------exports.join............................",
+			"io.connect",
+			"export",
+			"console.log",
+			"io",
+			"csrf_token",
+			"csrf",
+			"..........');\n",
+			"csrf",
+			"rooms/id/join\n",
+			"{\n",
+			"rooms/id/join",
+			"}\n",
+			"			users/session",
+			"/users/session",
+			"session",
+			"req.session._csrf",
+			"app.use(express.csrf())",
+			"express.csrf",
+			"app.use",
+			"load",
+			"welcome",
+			"socket.emit('welcome');",
+			"userJoined",
+			"msg",
+			"socket.emit",
+			"setUsername",
+			"appendNewUser",
+			"console",
+			"set username",
+			"appendNewUser",
+			"setCurrentUsers",
+			"parseCookie(data.headers.cookie)",
+			" parseCookie(data.headers.cookie)",
+			"connect-mongo",
+			"(\"---------------------\");\n",
+			"sendMessage",
+			"Set user name as new guy ",
+			"socket.on('disconnect'",
+			"welcome",
+			"userLeft",
+			"target",
+			"createServer",
+			"module.exports",
+			"\nmodule.exports",
+			"article",
+			"addComment",
+			"app.js",
+			"var socket = io.connect('http://localhost');",
+			"io.sockets.on",
+			"Room.list",
+			"exports",
 			"tagsInput",
 			"uploadAndSave",
 			"articles",
@@ -345,21 +477,7 @@
 			"createCoun",
 			"time-left-utc",
 			"utc",
-			"past",
-			"presentTimes",
-			"futureTimes",
-			"());",
-			"();",
-			"datepicker",
-			"newstarttimeutc",
-			"timepick",
-			"time",
-			"timepickr",
-			"ct",
-			"endTime",
-			"num",
-			"package",
-			"body"
+			"past"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -367,6 +485,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			""
 		],
 		"reverse": true,
 		"show_context": true,
@@ -377,23 +496,23 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 9,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "config/routes.js",
+					"file": "About/About.txt",
 					"settings":
 					{
-						"buffer_size": 3835,
+						"buffer_size": 4394,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3029,
-								3029
+								4393,
+								4393
 							]
 						],
 						"settings":
@@ -442,12 +561,12 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1709.0,
+						"translation.y": 648.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -457,15 +576,15 @@
 					"file": "app/controllers/rooms.js",
 					"settings":
 					{
-						"buffer_size": 2346,
+						"buffer_size": 3069,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1563,
-								1563
+								453,
+								453
 							]
 						],
 						"settings":
@@ -519,97 +638,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 378.0,
+						"translation.y": 108.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "app/views/rooms/form.jade",
-					"settings":
-					{
-						"buffer_size": 1375,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								71,
-								71
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Jade/Jade.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "app/models/room.js",
 					"settings":
 					{
-						"buffer_size": 3319,
+						"buffer_size": 3969,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1320,
-								1320
+								3079,
+								3079
 							]
 						],
 						"settings":
@@ -663,25 +710,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 756.0,
+						"translation.y": 1944.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "app/views/comments/form.jade",
+					"buffer": 3,
+					"file": "config/sockets.js",
 					"settings":
 					{
-						"buffer_size": 320,
+						"buffer_size": 5547,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								320,
-								320
+								2772,
+								2772
 							]
 						],
 						"settings":
@@ -730,28 +777,578 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close"
 							],
-							"syntax": "Packages/Jade/Jade.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1512.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"settings":
+					{
+						"buffer_size": 23763,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										238,
+										242
+									],
+									[
+										254,
+										258
+									],
+									[
+										518,
+										522
+									],
+									[
+										534,
+										538
+									],
+									[
+										863,
+										867
+									],
+									[
+										879,
+										883
+									],
+									[
+										1172,
+										1176
+									],
+									[
+										1188,
+										1192
+									],
+									[
+										1449,
+										1453
+									],
+									[
+										1473,
+										1477
+									],
+									[
+										1720,
+										1724
+									],
+									[
+										1736,
+										1740
+									],
+									[
+										1990,
+										1994
+									],
+									[
+										2006,
+										2010
+									],
+									[
+										2041,
+										2045
+									],
+									[
+										2068,
+										2072
+									],
+									[
+										2084,
+										2088
+									],
+									[
+										2293,
+										2297
+									],
+									[
+										2607,
+										2611
+									],
+									[
+										2623,
+										2627
+									],
+									[
+										2933,
+										2937
+									],
+									[
+										2949,
+										2953
+									],
+									[
+										3193,
+										3197
+									],
+									[
+										3209,
+										3213
+									],
+									[
+										3399,
+										3403
+									],
+									[
+										3418,
+										3422
+									],
+									[
+										3662,
+										3666
+									],
+									[
+										3874,
+										3878
+									],
+									[
+										3898,
+										3902
+									],
+									[
+										3945,
+										3949
+									],
+									[
+										4077,
+										4081
+									],
+									[
+										4111,
+										4115
+									],
+									[
+										4140,
+										4144
+									],
+									[
+										4229,
+										4233
+									],
+									[
+										4286,
+										4290
+									],
+									[
+										4363,
+										4367
+									],
+									[
+										4418,
+										4422
+									],
+									[
+										4566,
+										4570
+									],
+									[
+										4658,
+										4662
+									],
+									[
+										4709,
+										4713
+									],
+									[
+										4851,
+										4855
+									],
+									[
+										4877,
+										4881
+									],
+									[
+										4906,
+										4910
+									],
+									[
+										4923,
+										4927
+									],
+									[
+										5135,
+										5139
+									],
+									[
+										5141,
+										5145
+									],
+									[
+										5430,
+										5434
+									],
+									[
+										5538,
+										5542
+									],
+									[
+										5564,
+										5568
+									],
+									[
+										5640,
+										5644
+									],
+									[
+										5977,
+										5981
+									],
+									[
+										6144,
+										6148
+									],
+									[
+										6332,
+										6336
+									],
+									[
+										6517,
+										6521
+									],
+									[
+										6650,
+										6654
+									],
+									[
+										6671,
+										6675
+									],
+									[
+										6877,
+										6881
+									],
+									[
+										6998,
+										7002
+									],
+									[
+										7026,
+										7030
+									],
+									[
+										7077,
+										7081
+									],
+									[
+										7233,
+										7237
+									],
+									[
+										7383,
+										7387
+									],
+									[
+										7428,
+										7432
+									],
+									[
+										7464,
+										7468
+									],
+									[
+										7577,
+										7581
+									],
+									[
+										7738,
+										7742
+									],
+									[
+										9260,
+										9264
+									],
+									[
+										9300,
+										9304
+									],
+									[
+										11388,
+										11392
+									],
+									[
+										11428,
+										11432
+									],
+									[
+										11677,
+										11681
+									],
+									[
+										11694,
+										11698
+									],
+									[
+										11723,
+										11727
+									],
+									[
+										11897,
+										11901
+									],
+									[
+										11966,
+										11970
+									],
+									[
+										11993,
+										11997
+									],
+									[
+										12037,
+										12041
+									],
+									[
+										12047,
+										12051
+									],
+									[
+										12252,
+										12256
+									],
+									[
+										12423,
+										12427
+									],
+									[
+										12731,
+										12735
+									],
+									[
+										12737,
+										12741
+									],
+									[
+										13054,
+										13058
+									],
+									[
+										13162,
+										13166
+									],
+									[
+										13188,
+										13192
+									],
+									[
+										13264,
+										13268
+									],
+									[
+										13601,
+										13605
+									],
+									[
+										13768,
+										13772
+									],
+									[
+										13956,
+										13960
+									],
+									[
+										14141,
+										14145
+									],
+									[
+										14274,
+										14278
+									],
+									[
+										14295,
+										14299
+									],
+									[
+										14501,
+										14505
+									],
+									[
+										14622,
+										14626
+									],
+									[
+										14650,
+										14654
+									],
+									[
+										14701,
+										14705
+									],
+									[
+										14857,
+										14861
+									],
+									[
+										15007,
+										15011
+									],
+									[
+										15052,
+										15056
+									],
+									[
+										15088,
+										15092
+									],
+									[
+										15201,
+										15205
+									],
+									[
+										15362,
+										15366
+									],
+									[
+										16564,
+										16568
+									],
+									[
+										16604,
+										16608
+									],
+									[
+										20867,
+										20871
+									],
+									[
+										20907,
+										20911
+									],
+									[
+										21330,
+										21340
+									],
+									[
+										21600,
+										21610
+									],
+									[
+										21816,
+										21826
+									],
+									[
+										22016,
+										22026
+									],
+									[
+										22241,
+										22251
+									],
+									[
+										22557,
+										22567
+									],
+									[
+										22805,
+										22815
+									],
+									[
+										23090,
+										23100
+									],
+									[
+										23357,
+										23367
+									],
+									[
+										23611,
+										23621
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								21605,
+								21605
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"detect_indentation": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7524.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "server.js",
+					"file": "app/controllers/comments.js",
 					"settings":
 					{
-						"buffer_size": 1257,
+						"buffer_size": 377,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1068,
-								1068
+								157,
+								138
 							]
 						],
 						"settings":
@@ -803,25 +1400,95 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "public/js/app.js",
+					"file": "server.js",
 					"settings":
 					{
-						"buffer_size": 428,
+						"buffer_size": 1325,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								422,
-								422
+								1276,
+								1276
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "config/routes.js",
+					"settings":
+					{
+						"buffer_size": 3204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2525,
+								2525
 							]
 						],
 						"settings":
@@ -875,7 +1542,151 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 972.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "config/express.js",
+					"settings":
+					{
+						"buffer_size": 2976,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2135,
+								2135
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "public/js/chat.js",
+					"settings":
+					{
+						"buffer_size": 4407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2828,
+								2828
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -933,6 +1744,130 @@
 		"selected_items":
 		[
 			[
+				"config/route",
+				"config/routes.js"
+			],
+			[
+				"server",
+				"server.js"
+			],
+			[
+				"chat",
+				"public/js/chat.js"
+			],
+			[
+				"serve",
+				"server.js"
+			],
+			[
+				"sock",
+				"config/sockets.js"
+			],
+			[
+				"expr",
+				"config/express.js"
+			],
+			[
+				"show",
+				"app/views/rooms/show.jade"
+			],
+			[
+				"ser",
+				"server.js"
+			],
+			[
+				"expre",
+				"config/express.js"
+			],
+			[
+				"util",
+				"lib/utils.js"
+			],
+			[
+				"csrf.j",
+				"node_modules/connect/lib/middleware/csrf.js"
+			],
+			[
+				"middl/auth",
+				"config/middlewares/authorization.js"
+			],
+			[
+				"show.",
+				"app/views/rooms/show.jade"
+			],
+			[
+				"csrf",
+				"node_modules/connect/lib/middleware/csrf.js"
+			],
+			[
+				"middl",
+				"socket/node_modules/express/lib/middleware.js"
+			],
+			[
+				"authi",
+				"config/middlewares/authorization.js"
+			],
+			[
+				"pass",
+				"config/passport.js"
+			],
+			[
+				"chat.j",
+				"public/js/chat.js"
+			],
+			[
+				"route",
+				"config/routes.js"
+			],
+			[
+				"app.j",
+				"socket/app.js"
+			],
+			[
+				"def",
+				"app/views/layouts/default.jade"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"authori",
+				"config/middlewares/authorization.js"
+			],
+			[
+				"rout",
+				"config/routes.js"
+			],
+			[
+				"passpo",
+				"config/passport.js"
+			],
+			[
+				"expres",
+				"config/express.js"
+			],
+			[
+				"routes",
+				"config/routes.js"
+			],
+			[
+				"notif",
+				"app/mailer/notify.js"
+			],
+			[
+				"comm",
+				"app/controllers/comments.js"
+			],
+			[
+				"serv",
+				"server.js"
+			],
+			[
+				"autho",
+				"config/middlewares/authorization.js"
+			],
+			[
 				"modelroom",
 				"app/models/room.js"
 			],
@@ -941,24 +1876,8 @@
 				"node_modules/mongoose/lib/model.js"
 			],
 			[
-				"route",
-				"config/routes.js"
-			],
-			[
 				"confi",
 				"config/config.js"
-			],
-			[
-				"serv",
-				"server.js"
-			],
-			[
-				"show.",
-				"app/views/articles/show.jade"
-			],
-			[
-				"rout",
-				"config/routes.js"
 			],
 			[
 				"header",
@@ -999,6 +1918,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 243.0,
+	"side_bar_width": 216.0,
 	"status_bar_visible": true
 }
