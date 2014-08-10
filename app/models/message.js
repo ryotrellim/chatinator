@@ -55,24 +55,21 @@ MessageSchema.methods = {
    * @param {Function} cb
    * @api private
    */
-  create: function (user, message, cb) {
-    var notify = require('../mailer/notify')
+  uploadAndSave: function (cb) {
+    // var notify = require('../mailer/notify')
 
-    this.messages.push({
-      body: message.body,
-      user: user._id
-    })
-
-    notify.message({
-      room: this,
-      currentUser: user,
-      message: message.body
-    })
+    // notify.message({
+    //   room: this,
+    //   currentUser: user,
+    //   message: message.body
+    // })
 
     this.save(cb)
   }
 
 }
+
+
 
 /**
  * Statics

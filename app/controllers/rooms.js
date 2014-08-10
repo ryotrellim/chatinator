@@ -90,7 +90,7 @@ exports.leave = function(req, res, io){
   }
 
   if(removeUser) {
-    room.removeParticipant(req.user);  // remove from db, then uypdate other users
+    room.removeParticipant(req.user);  // remove from db, then update other users
     io.sockets.emit('userLeft', {userName: req.user.username});
   }
 
@@ -215,10 +215,12 @@ exports.update = function(req, res){
  * Show
  */
 exports.show = function(req, res){
+  console.log(req);
   res.render('rooms/show', {
     title: req.room.title,
     room: req.room,
-    user: req.user
+    user: req.user,
+    messages: req.messages
   })
 }
 

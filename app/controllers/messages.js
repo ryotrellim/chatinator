@@ -42,7 +42,8 @@ exports.create = function (req, res, io) {
   message.user = req.user
 
   var createComment = false;
-  // Go through participants and determine if eligible to message
+
+  // Is User Participant?
   for (var i = room.participants.length - 1; i >= 0; i--) {
     if(room.participants[i].user.toString() == req.user._id.toString())
     {
@@ -52,17 +53,26 @@ exports.create = function (req, res, io) {
     }
   };
 
-
+  // Is user creator?
   if(room.user._id.toString() == req.user._id.toString()) {
     createComment = true;
   }
 
   if(createComment) {
-    io.sockets.emit('message', {userName: req.user.username, message: message});
+    message.uploadAndSave(function (err) {
+      if (!err) {
+        // room.addParticipant(req.user)
+        room.addMessage(message);  // Add messageToRoom
+        io.sockets.emit('message', {userName: req.user.username, message: message});
+        req.flash('success', 'Successfully created room!')
+      }
+      // Send different responses for each condition
+    })
   } else {
     console.log('VALIDATOR:  Unable to send message.  User is not a participant or creator.');
   }
-  res.send(201, req.message);
+
+  res.send(201, req.message);  // See above
 }
 
 

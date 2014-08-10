@@ -149,17 +149,13 @@ $(function() {
   });
  
   socket.on('message', function(msg) {
-    console.log('socket.on(message)...Deliverying yo message!');
-    console.log(msg);
     appendNewMessage(msg);
   });
  
-  socket.on('welcome', function(msg) {
-    setFeedback("<span style='color: green'> Connected to room.</span>");
-    setCurrentUsers(msg.currentUsers)
-    // enableMsgInput(true);
-    // enableUsernameField(false);
-  });
+  // socket.on('welcome', function(msg) {
+  //   setFeedback("<span style='color: green'> Connected to room.</span>");
+  //   setCurrentUsers(msg.currentUsers)
+  // });
  
   socket.on('error', function(msg) {
       if (msg.userNameInUse) {

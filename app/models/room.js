@@ -41,6 +41,12 @@ var RoomSchema = new Schema({
     user: { type : Schema.ObjectId, ref : 'User' },
     createdAt: { type : Date, default : Date.now }
   }],
+  // messages: {[{
+  //     body: { type : String, default : '' },
+  //     user: { type : Schema.ObjectId, ref : 'User' },
+  //     createdAt: { type : Date, default : Date.now }
+  //   }]},
+  messages: [{type : Schema.ObjectId, ref: 'Message'}],
   tags: {type: [], get: getTags, set: setTags},
   // image: {
   //   cdnUri: String,
@@ -50,8 +56,17 @@ var RoomSchema = new Schema({
   participants :[{
     user: { type : Schema.ObjectId, ref : 'User' },
     username: { type: String, ref : 'User' },
-    dateJoined: { type : Date, default : Date.now }
-  }] 
+    dateJoined: { type : Date, default : Date.now },
+    order: { type: Number }
+  }],
+  status : {
+    type: String,
+    initiator: {type: Schema.ObjectId, ref : 'User'},
+    waitingFor: {type: Schema.ObjectId, ref : 'User'},
+    statusExpiration: { type: Date }
+  },
+  roomStartDate: {type : Date },
+  roomEndDate: {type : Date }
 })
 
 /**
@@ -137,12 +152,36 @@ RoomSchema.methods = {
   //   this.save(cb)
   // },
 
+  /**
+   * Link message
+   *
+   * @param {User} message
+   * @param {Function} cb
+   * @api private
+   */
+  addMessage: function (message, cb) {
+    console.log('-----------------');
+    console.log(message);
+    console.log(this);
+    console.log('-----------------');
+    // var notify = require('../mailer/notify')
+    this.messages.push({
+      message: message._id
+    })
+
+    // notify.participants({
+    //   room: this,
+    //   currentUser: user,
+    //   comment: comment.body
+    // })
+
+    this.save(cb)
+  },
 
   /**
    * Add participant
    *
    * @param {User} user
-   * @param {Object} comment
    * @param {Function} cb
    * @api private
    */
@@ -166,7 +205,6 @@ RoomSchema.methods = {
    * Remove participant
    *
    * @param {User} user
-   * @param {Object} comment
    * @param {Function} cb
    * @api private
    */
@@ -185,7 +223,9 @@ RoomSchema.methods = {
     // })
 
     this.save(cb)
-  }
+  },
+
+
 
 }
 
@@ -207,6 +247,7 @@ RoomSchema.statics = {
     this.findOne({ _id : id })
       .populate('user', 'name email username')
       .populate('comments.user')
+      .populate('messages.message', 'body user createdAt')
       .exec(cb)
   },
 
